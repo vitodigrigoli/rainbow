@@ -1,0 +1,759 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  basicTimeStep 16
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.12130306752497703 -0.9394576394372112 -0.3204760669879952 2.458294926560078
+  position -1.7391252525183665 2.6885892516104493 -3.152605805887125
+  follow "ramp 30 degrees"
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Solid {
+  children [
+    Shape {
+      appearance Parquetry {
+        type "light strip"
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            -1.5 0 -1.5
+            1.5 0 -1.5
+            -1.5 0 1.5
+            1.5 0 1.5
+          ]
+        }
+        texCoord TextureCoordinate {
+          point [
+            0 0
+            6 0
+            0 6
+            6 6
+          ]
+        }
+        coordIndex [
+          0, 2, 3, 1, -1
+        ]
+        texCoordIndex [
+          2, 0, 1, 3, -1
+        ]
+      }
+    }
+  ]
+  name "floor"
+  model "floor"
+  boundingObject Plane {
+    size 3 3
+  }
+  locked TRUE
+}
+DEF RED_BALL Solid {
+  translation 0.165756 0.0269353 -0.117858
+  rotation 0.43398011908527095 0.7980674702799577 0.4180305839525174 2.6709254191222116
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry DEF BALL_GEOMETRY Sphere {
+        radius 0.027
+        subdivision 2
+      }
+    }
+  ]
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
+  recognitionColors [
+    1 0 0
+  ]
+}
+DEF YELLOW_BALL Solid {
+  translation -1.02442 0.0269353 -0.33913
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 1 0
+        metalness 0
+      }
+      geometry USE BALL_GEOMETRY
+    }
+  ]
+  name "solid(7)"
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
+  recognitionColors [
+    1 1 0
+  ]
+}
+DEF GREEN_BALL Solid {
+  translation -0.353068 0.0269353 0.542241
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+        metalness 0
+      }
+      geometry USE BALL_GEOMETRY
+    }
+  ]
+  name "solid(8)"
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
+  recognitionColors [
+    0 1 0
+  ]
+}
+DEF BLUE_BALL Solid {
+  translation -0.636587 0.0269353 -0.304328
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        metalness 0
+      }
+      geometry USE BALL_GEOMETRY
+    }
+  ]
+  name "solid(5)"
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
+  recognitionColors [
+    0 0 1
+  ]
+}
+DEF VIOLET_BALL Solid {
+  translation -0.0409011 0.0269353 0.800903
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.56 0 1
+        metalness 0
+      }
+      geometry USE BALL_GEOMETRY
+    }
+  ]
+  name "solid(10)"
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
+  recognitionColors [
+    0.56 0 1
+  ]
+}
+DEF WALL_1 Solid {
+  translation 1.5 0.05 0.2
+  children [
+    DEF WALL_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.02 0.1 2.6
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_2 Solid {
+  translation -1.5 0.05 0
+  children [
+    DEF WALL_SHAPE2 Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        roughness 1
+        metalness 0
+      }
+      geometry DEF WALL_SHAPE2 Box {
+        size 0.02 0.1 3
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE WALL_SHAPE2
+}
+DEF WALL_3 Solid {
+  translation -0.19 0.05 -1.5
+  rotation 0 1 0 -1.5707953071795862
+  children [
+    USE WALL_SHAPE
+  ]
+  name "solid(3)"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_4 Solid {
+  translation 0 0.05 1.5
+  rotation 0 1 0 1.5708
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        roughness 1
+        metalness 0
+      }
+      geometry USE WALL_SHAPE2
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE WALL_SHAPE2
+}
+Robot {
+  translation -0.538885 0.039856 0.140934
+  rotation 0.00014448599797863262 0.9999999860099429 8.428469882085224e-05 1.66227
+  children [
+    InertialUnit {
+    }
+    GPS {
+      children [
+        Solid {
+          translation 0 0.02 0.05
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.5 0.5 0.5
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.02
+                radius 0.01
+              }
+            }
+          ]
+          boundingObject Cylinder {
+            height 0.02
+            radius 0.01
+          }
+        }
+      ]
+      name "global"
+    }
+    DEF CAMERA Group {
+      children [
+        Camera {
+          translation 0 0 0.1
+          rotation 0 1 0 -3.14
+          children [
+            Solid {
+              translation 0 0 0.01
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry DEF CAMERA_GEOMETRY Box {
+                    size 0.01 0.01 0.03
+                  }
+                }
+              ]
+              boundingObject Box {
+                size 0.01 0.01 0.03
+              }
+            }
+          ]
+          boundingObject Box {
+            size 0.01 0.01 0.02
+          }
+          width 800
+          height 800
+          lens Lens {
+          }
+          recognition Recognition {
+            frameColor 0 1 0
+            frameThickness 2
+          }
+        }
+      ]
+    }
+    DEF BRACCIO_DX Solid {
+      translation -0.045 0 0.12
+      scale 1.05 1.05 1.05
+      children [
+        DistanceSensor {
+          translation 0 0 0.07
+          rotation 0 1 0 -1.8325953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.184 0.54 0.84
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          name "ds_right"
+          boundingObject Box {
+            size 0.01 0.01 0.01
+          }
+          physics Physics {
+          }
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position -7.69360782560649e-08
+            axis 0 0 1
+            anchor 0 0 1
+          }
+          device [
+            RotationalMotor {
+              name "rm"
+            }
+          ]
+          endPoint Solid {
+            translation -1.3151262110861021e-11 -0.00017202799999998706 0.06000000000009986
+            rotation -0.9999999999999986 3.822419225437834e-08 -3.7572176381992785e-08 1.5879999999999292
+            children [
+              Solid {
+                translation 0 -0.003 0.042
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 1 0 0
+                      roughness 1
+                      metalness 0
+                    }
+                    geometry Box {
+                      size 0.01 0.01 0.07
+                    }
+                  }
+                ]
+                boundingObject Box {
+                  size 0.01 0.01 0.07
+                }
+                physics Physics {
+                }
+              }
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.02
+                  radius 0.005
+                }
+              }
+            ]
+            boundingObject Cylinder {
+              height 0.02
+              radius 0.005
+            }
+            physics Physics {
+            }
+          }
+        }
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.14
+          }
+        }
+      ]
+      boundingObject Box {
+        size 0.01 0.01 0.14
+      }
+      physics Physics {
+      }
+    }
+    DEF BRACCIO_SX Solid {
+      translation 0.045 0 0.12
+      scale 1.05 1.05 1.05
+      children [
+        DistanceSensor {
+          translation -4.68953e-14 0 0.07
+          rotation 0 -1 0 1.309
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.184 0.59 0.84
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          name "ds_left"
+          boundingObject Box {
+            size 0.01 0.01 0.01
+          }
+          physics Physics {
+          }
+        }
+        DistanceSensor {
+          translation -0.00300006 0 0.02
+          rotation 0 1 0 3.14159
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.184 0.59 0.84
+                roughness 1
+                metalness 0
+              }
+              geometry Box {
+                size 0.01 0.01 0.01
+              }
+            }
+          ]
+          name "ds_ball"
+          boundingObject Box {
+            size 0.01 0.01 0.01
+          }
+        }
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.14
+          }
+        }
+      ]
+      name "solid(2)"
+      boundingObject Box {
+        size 0.01 0.01 0.14
+      }
+      physics Physics {
+      }
+    }
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.05 0.2
+      }
+    }
+    DEF WHEEL1 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 8.473108934785966
+        anchor 0.06 0 0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 0 0.05
+        rotation -0.6643716058572762 0.6643740462349015 -0.3423704076290603 3.801313907178188
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0.3 0.3 0.3
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+              subdivision 24
+            }
+          }
+        ]
+        name "wheel1"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 366.7268575602146
+        anchor -0.06 0 0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0 0.05
+        rotation 0.6743287624506645 -0.6743312394030244 0.3009287286002051 2.5569774385142594
+        children [
+          USE WHEEL
+        ]
+        name "wheel2"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 8.473058712323821
+        anchor 0.06 0 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 0 -0.05
+        rotation -0.6643668031521306 0.66436924351212 -0.3423890464727975 3.801347273435408
+        children [
+          USE WHEEL
+        ]
+        name "wheel3"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    DEF WHEEL4 HingeJoint {
+      jointParameters HingeJointParameters {
+        position 366.7269441312311
+        anchor -0.06 0 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0 -0.05
+        rotation 0.6743358647330163 -0.6743383417114658 0.3008968966815797 2.557035816148097
+        children [
+          USE WHEEL
+        ]
+        name "wheel4"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+    density -1
+    mass 1
+  }
+  controller "rainbow"
+}
+Solid {
+  translation 0.4 0.001 -0.4
+  rotation 0 1 0 -0.7854053071795866
+  children [
+    Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "textures/webots_billboard.jpg"
+            ""
+          ]
+        }
+      }
+      geometry Plane {
+        size 0.4 0.4
+      }
+    }
+  ]
+  name "solid(11)"
+}
+Solid {
+  translation 1.15913 0.01 -1.11448
+  rotation 0 1 0 0.785401
+  scale 0.1 0.1 0.1
+  children [
+    Solid {
+      translation 5.78632 0.635092 -0.0532589
+      rotation 0.04363622124736624 0.9990474864566002 -3.5799917431710064e-09 3.14159
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry DEF RAMP_WALL Box {
+            size 5 0.9 0.1
+          }
+        }
+      ]
+      boundingObject USE RAMP_WALL
+    }
+    Solid {
+      translation 5.80039 0.60881 -0.909911
+      rotation 0.043558618061719685 0.9990508729752222 0 3.14
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            transparency 0.4
+            roughness 1
+            metalness 0
+          }
+          geometry DEF RAMP_WALL Box {
+            size 5 0.9 0.1
+          }
+        }
+      ]
+      name "solid(1)"
+      boundingObject USE RAMP_WALL
+    }
+    Solid {
+      translation 2.29635 0.948839 -2.23952
+      rotation 0.029986509105671005 0.9995503035223668 0 2.2083
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry DEF RAMP_INCLINATE Box {
+            size 3.2 0.9 0.1
+          }
+        }
+      ]
+      name "solid(2)"
+      boundingObject USE RAMP_INCLINATE
+    }
+    Solid {
+      translation 2.3233 0.946433 1.28459
+      rotation 0.06561181464544835 0.9953332221718967 0.07075921579441821 -2.2169053071795863
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry Box {
+            size 3.2 0.9 0.1
+          }
+        }
+      ]
+      name "solid(3)"
+      boundingObject USE RAMP_INCLINATE
+    }
+    Solid {
+      translation 7.98152 0.387047 -0.5
+      rotation 0 0 1 -0.1308996938995747
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.8 0.8 0.8
+            roughness 1
+            metalness 0
+          }
+          geometry DEF CLOSE_WALL Box {
+            size 0.1 1 0.7
+          }
+        }
+      ]
+      name "solid(4)"
+      boundingObject USE CLOSE_WALL
+    }
+    DEF RAMP Group {
+      children [
+        Transform {
+          translation -3.57789 0.12 -0.5
+          rotation 0 0 -1 -0.14
+          scale 1 1 2
+          children [
+            Shape {
+              appearance Appearance {
+                texture ImageTexture {
+                  url [
+                    "textures/asphalt.jpg"
+                  ]
+                }
+              }
+              geometry DEF RAMP_GEOMETRY Box {
+                size 3.6 0.1 3
+              }
+            }
+          ]
+        }
+        Transform {
+          translation -0.3 0.39 -0.5
+          rotation 0 0 1 0.01
+          children [
+            Shape {
+              appearance Appearance {
+                texture ImageTexture {
+                  url [
+                    "textures/asphalt.jpg"
+                  ]
+                }
+              }
+              geometry Box {
+                size 3 0.1 6
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 4.62621 0.106119 -0.5
+          rotation 0 0 1 -0.0873
+          children [
+            Shape {
+              appearance Appearance {
+                texture ImageTexture {
+                  url [
+                    "textures/asphalt.jpg"
+                  ]
+                }
+              }
+              geometry Box {
+                size 7 0.1 6
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  name "ramp 30 degrees"
+  model "ramp 30 degrees"
+  boundingObject USE RAMP
+}
+Solid {
+  translation -0.151025 0 0.105194
+  children [
+    Shape {
+      appearance Appearance {
+        texture ImageTexture {
+          url [
+            "textures/red_brick_wall.jpg"
+          ]
+        }
+      }
+      geometry Box {
+        size 0.02 0.2 0.1
+      }
+    }
+  ]
+  name "solid(6)"
+  boundingObject Box {
+    size 0.02 0.2 0.1
+  }
+}
