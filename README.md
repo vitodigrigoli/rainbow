@@ -20,24 +20,23 @@ the balls will be grouped in order, generating a rainbow as the final effect.
 # Robot anatomy
 We have chosen not to use the default Webots robots, but to build one manually using the
 assets that the platform provides.
+
 Regarding the sensors used, we chose to take advantage of:
-- Inertial Unit. It simulates a sensor that measures the relative angles of roll, pitch and yaw. The
+- **Inertial Unit**. It simulates a sensor that measures the relative angles of roll, pitch and yaw. The
 We used it mainly to calculate the yaw angle of the robot with respect to the Webots reference axes.
 reference axes of Webots.
-- GPS. Simulates a positioning sensor that measures absolute position in the Webots coordinate system.
+- **GPS**. Simulates a positioning sensor that measures absolute position in the Webots coordinate system.
 Webots.
-- Camera. Simulates a typical RGB camera in which the color recognition feature has been enabled.
-colors.
-- Distance sensors, two of which are useful for detecting obstacles and one for giving input to the arm to
+- **Camera**. Simulates a typical RGB camera in which the color recognition feature has been enabled.
+- **Distance sensors**, two of which are useful for detecting obstacles and one for giving input to the arm to
 close at the moment in which it is in possession of the ball.
-4
+
 As for the structure, we have chosen to create:
-- Three arms, two of which are fixed to prevent the ball from escaping and one that rotates thanks to the use of a
+- **Three arms**, two of which are fixed to prevent the ball from escaping and one that rotates thanks to the use of a
 hinge that allows only a rotational movement around a given axis. Specifically we have
 chosen the Z axis as the axis on which to rotate the rotational motor.
-- A body, to give the robot a visual appearance.
-- Four drive wheels with a rotational motor in each of them to allow the robot to
-move.
+- **A body**, to give the robot a visual appearance.
+- **Four drive wheels** with a rotational motor in each of them to allow the robot to move.
 
 # Structure of the environment
 We chose to use the default settings provided by Webots and to change only the basicTimeStep parameter to a value of 16.
@@ -57,7 +56,9 @@ to allow the camera to recognize them.
 
 # Controller
 It has been chosen to set up a TimeStep equal to the basicTimeStep of the atmosphere in order to synchronize the actions of the
-robot to the execution of the simulation. In particular, we have recalled the function wb_robot_step(TimeStep) every time a movement of the robot was executed.
+robot to the execution of the simulation.
+
+In particular, we have recalled the function wb_robot_step(TimeStep) every time a movement of the robot was executed.
 
 In order for the robot to perform various tasks, we created five different states:
 1. **Detect_ball**. Initial state of the robot in which it starts rotating on itself, counterclockwise, until it detects the ball of the same size.
@@ -115,7 +116,7 @@ This function allows to activate all the sensors in the robot such as:
 
 It is used inside the main function allowing the use of all sensors from the beginning.
 
-## char* recognition_color(const double *color)
+## char* recognition_color (const double *color)
 This function allows to recognize the color passed in RGB format and return the color string according to the value of the three channels passed to the
 based on the value of the three channels passed to the function.
 
@@ -131,7 +132,9 @@ in a range [0,1].
 
 ## const WbCameraRecognitionObject* is_that_color (const double *color)
 This function allows to search, inside the list of the objects recognized by the camera, for the ball of the specified
-color and returns its position in the list. If the color of the specified ball is not present, the function returns a pointer to NULL.
+color and returns its position in the list. 
+
+If the color of the specified ball is not present, the function returns a pointer to NULL.
 
 ## const double odomentry (const double Xf, const double Zf)
 This function acquires the coordinates of the robot and calculates the distance to the goal to be reached. Finally, returns the angle of rotation that the robot
