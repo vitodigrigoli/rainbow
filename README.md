@@ -1,4 +1,4 @@
-# rainbow
+# Project Rainbow
 
 # Introduction
 Our project aims at the realization of a robot that has as objective the collection of some balls
